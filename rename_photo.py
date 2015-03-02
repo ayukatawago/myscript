@@ -4,7 +4,6 @@ from PIL import Image
 import datetime
 import glob
 import os
-import re
 
 files = glob.glob('*')
 
@@ -26,7 +25,9 @@ for filename in files:
             if t == 0:
                 print "cannot get time"
                 continue
-            newname = "%04d%02d%02d_%02d%02d%02d_%s%s" % (t.year, t.month, t.day, t.hour, t.minute, t.second, option, ext)
+            newname = ("%04d%02d%02d_%02d%02d%02d_%s%s"
+                       % (t.year, t.month, t.day, t.hour, t.minute, t.second,
+                          option, ext))
             print newname
             if os.path.exists(newname):
                 print "### cannot rename to %s" % newname
