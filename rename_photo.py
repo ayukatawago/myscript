@@ -1,4 +1,4 @@
-#! /usr/bin/env/python
+#! /usr/bin/env python
 
 from PIL import Image
 import datetime
@@ -12,7 +12,7 @@ for filename in files:
         continue
     name, ext = os.path.splitext(filename)
     if ext == ".JPG" or ext == ".jpg":
-        print filename
+        print(filename)
         img = Image.open(filename)
         if img._getexif():
             t = 0
@@ -23,15 +23,15 @@ for filename in files:
                 if key == 271:
                     option = value.split()[0]
             if t == 0:
-                print "cannot get time"
+                print("cannot get time")
                 continue
             newname = ("%04d%02d%02d_%02d%02d%02d_%s%s"
                        % (t.year, t.month, t.day, t.hour, t.minute, t.second,
                           option, ext))
-            print newname
+            print(newname)
             if os.path.exists(newname):
-                print "### cannot rename to %s" % newname
+                print("### cannot rename to %s" % newname)
             else:
                 os.rename(filename, newname)
         else:
-            print "### skip rename for %s" % filename
+            print("### skip rename for %s" % filename)
